@@ -3,10 +3,10 @@ import sys
 import numpy as np
 # from SamplePreprocessor import preprocessor as preprocess
 import cv2
-from DataLoader import Batch, DataLoader, FilePaths
-from SamplePreprocessor import preprocessor as preprocess
-from SamplePreprocessor import wer
-from Model import DecoderType, Model
+from .DataLoader import Batch, DataLoader, FilePaths
+from .SamplePreprocessor import preprocessor as preprocess
+from .SamplePreprocessor import wer
+from .Model import DecoderType, Model
 import warnings
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 warnings.filterwarnings('ignore', category=FutureWarning)
