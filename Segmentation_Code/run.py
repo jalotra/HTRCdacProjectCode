@@ -7,10 +7,10 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import cv2
 import time
-from helpers import implt
+from .helpers import implt, resize
 
 # Import the preprocessing Module
-from words_Segmentation import *
+from .words_Segmentation import *
 
 def normalise_And_center(img):
     (m, s) = cv2.meanStdDev(img)
@@ -41,7 +41,7 @@ def otsu_thresholding(imageObject):
 
     return th3
 
-def extract_boxes(imageObject, boxes, apply_otsu_on_boxes):
+def extract_boxes(imageObject, boxes, apply_otsu_on_boxes, to_save_location, filename):
     cnt = 0
     for i, (startX, startY, endX, endY) in enumerate(boxes):
         
@@ -59,19 +59,41 @@ def extract_boxes(imageObject, boxes, apply_otsu_on_boxes):
         # implt(newBox)
         
         
-        if not os.path.isdir("Output_Images"):
-            os.mkdir("Output_Images")
+        if not os.path.isdir(f"{to_save_location}{str(filename.split('.')[0])}"):
+            print('NOT FOUND')
+            os.mkdir(f"{to_save_location}{str(filename.split('.')[0])}")
+        print(newBox)
         
-        # if(newBox.shape[0] >= 50 and newBox.shape[1] >= 50): 
-        print('BOX NO {}'.format(i))
-        # print(newBox.shape)
-        # Resize and save
-        # cnndim = (128, 32)
-        # resized = cv2.resize(newBox, cnndim, cv2.INTER_AREA)
-        print('Output_Images/Box{}.jpg'.format(cnt))
-        cv2.imwrite('Output_Images/Box{}.jpg'.format(cnt), newBox)
+        cv2.imwrite(f'{to_save_location}/{str(filename.split(".")[0])}/Box{cnt}.jpg', newBox)
+        print(f'{to_save_location}{str(filename.split(".")[0])}/Box{cnt}.jpg')
         cnt += 1
         
+def get_input_output_folder_path():
+    # By default 
+    # The input images will be taken from ../Input_Images Folder
+    # And then the segmented images will be put into ../Word_Segmented_Images Folder
+    # You can also change this
+    return ("Input_Images/", "Word_Segmented_Images/")
+
+def run(image_filename):
+    # Supports .jpg, .jpeg, .tiff
+    # In other words all the file-types that opencv supports
+
+    input_images_folder, output_images_folder = get_input_output_folder_path()
+    assert(input_images_folder[-1] == "/"  and output_images_folder[-1] == "/")
+
+    originalImage = cv2.imread(input_images_folder + image_filename)
+    boxes  = return_boxes(originalImage, see = False)
+    newImage = cv2.imread(input_images_folder + image_filename, cv2.IMREAD_GRAYSCALE)
+    newImage = resize(newImage, 2000)
+
+    # Lets do otsu threshold on this image
+    # newImage = otsu_thresholding(newImage)
+    # Extract the boxes and save the files 
+    extract_boxes(newImage, boxes, filename = image_filename, \
+         to_save_location = output_images_folder, apply_otsu_on_boxes= False)
+
+
 
 
 

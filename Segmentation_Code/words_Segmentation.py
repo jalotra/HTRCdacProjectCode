@@ -6,7 +6,7 @@ return array of words' bounding boxes
 import numpy as np
 import matplotlib.pyplot as plt
 import cv2
-from helpers import *
+from .helpers import *
 
 
 def detection(image, see, join=True):
