@@ -33,7 +33,7 @@ def parallel_recognise():
     print(results)
     for i in range(len(results)):
         print(results[0])
-        f = open(f"Output_Text/{results[0]}", "a")
+        f = open(f"Output_Text/{results[i][0]}", "a")
         f.write(results[1] + "\n")
         f.close()
 
