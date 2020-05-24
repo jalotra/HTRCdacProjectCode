@@ -279,7 +279,7 @@ class Model:
         print('Tensorflow: ' + tf.__version__)
         sess = tf.Session()  # Tensorflow session
         saver = tf.train.Saver(max_to_keep=3)  # Saver saves model to file
-        modelDir = '../model/'
+        modelDir = 'model/'
         latestSnapshot = tf.train.latest_checkpoint(modelDir)  # Is there a saved model?
         # If model must be restored (for inference), there must be a snapshot
         if self.mustRestore and not latestSnapshot:
