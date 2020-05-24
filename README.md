@@ -29,8 +29,8 @@ Now what have we done is to extract the features in the image. Because that's wh
 How can we define map something of the size bs x 32 x 1 x 512 to words. Here come the CTC Loss. You can find much more advanced materials on the net. Just google CTC Loss. A brilliant phd-thesis is [here](https://www.cs.toronto.edu/~graves/phd.pdf). You can find everything about CTC from Alex-Graves. <br />
 So basically the thing is that we want loss for each character that might be present and Alex has written a Loss that computes loss according to each char for every time-stamp in the output-map and then backprops it. <br />
 
-Next I use two <b> BDLSTM or Bi-directional LSTMS <b/> that can take in consideration what's before and also what's after a character to recognise overtime relation between characters. </b>
-Next I apply <b>2 BLSTM Layers </b>:
+Next I use two <b> BDLSTM or Bi-directional LSTMS </b> that can take in consideration what's before and also what's after a character to recognise overtime relation between characters. </b>
+Next I apply <b>2 BLSTM Layers </b> :
 Input tensor-size = bs x 32 x 1 x 512
 ``` 
 Two Lstm Units having 256 units.
