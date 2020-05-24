@@ -76,7 +76,7 @@ def infer(model, batch):
 
     return recognised
 
-def main(folder_name):
+def main(folder_name, folder_path):
 
     results = []
      # Define the DecorderType
@@ -91,7 +91,7 @@ def main(folder_name):
         print("VALIDATIING BATCH {}".format(batchnum))
         resultant_text = infer(model, batch)
         for  j in range(len(images_filepaths[batchnum])):
-            results.append(tuple((str(folder_name.split["/"][0]),  \
+            results.append(tuple((folder_path ,  \
             str(images_filepaths[batchnum][j]+ " : " +  resultant_text[j]))))
     
     return results
