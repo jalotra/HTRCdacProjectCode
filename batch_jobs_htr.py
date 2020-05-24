@@ -31,10 +31,12 @@ def parallel_recognise():
     # Lets write the results to appropriate folders --> Output_Text/folder_name
     results = list(results)
     print(results)
+    if not os.path.exists("Output_Text/"):
+        os.mkdir("Output_Text")
     for i in range(len(results)):
         for j in range(len(results[i])):
             print(results[0])
-            f = open(f"Output_Text/{results[i][j][0]}", "a")
+            f = open(f"Output_Text/{results[i][j][0]}.txt", "a")
             f.write(results[i][j][1] + "\n")
             f.close()
 
