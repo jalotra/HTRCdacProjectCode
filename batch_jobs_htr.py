@@ -35,12 +35,13 @@ def parallel_recognise():
     # print(*results)   
     # Lets write the results to appropriate folders --> Output_Text/folder_name
     results = list(results)
-    print(results)
+    # print(results)
     if not os.path.exists("Output_Text/"):
         os.mkdir("Output_Text")
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for i in range(len(results)):
             for j in range(len(results[i])):
+                print(results[i][j][0])
                 executor.submit(write_to_file,\
                      f"Output_Text/{results[i][j][0]}.txt", results[i][j][1])
 
