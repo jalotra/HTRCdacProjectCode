@@ -76,12 +76,12 @@ def infer(model, batch):
 
     return recognised
 
-def main():
+def main(folder_name):
 
      # Define the DecorderType
     decorder = DecoderType.BestPath
     # Define the folder in which images are present
-    folder_name = sys.argv[1]
+    # folder_name = sys.argv[1]
     model = Model(open(FilePaths.fnCharList).read(), decorder, mustRestore= True)
 
     # Make batches list 
