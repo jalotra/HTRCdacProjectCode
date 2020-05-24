@@ -27,9 +27,10 @@ def parallel_recognise():
     folders = [f"Word_Segmented_Images/{x}" for x in folders]
     with concurrent.futures.ProcessPoolExecutor() as executor:
         results = executor.map(validate.main, folders)
-    print(*results)
+    # print(*results)
     # Lets write the results to appropriate folders --> Output_Text/folder_name
     results = list(results)
+    print(results)
     for i in range(len(results)):
         print(results[0])
         f = open(f"Output_Text/{results[0]}", "a")
