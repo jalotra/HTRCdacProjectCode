@@ -78,6 +78,7 @@ def infer(model, batch):
 
 def main(folder_name):
 
+    results = []
      # Define the DecorderType
     decorder = DecoderType.BestPath
     # Define the folder in which images are present
@@ -90,7 +91,9 @@ def main(folder_name):
         print("VALIDATIING BATCH {}".format(batchnum))
         resultant_text = infer(model, batch)
         for  j in range(len(images_filepaths[batchnum])):
-            print(images_filepaths[batchnum][j][3:] + " : " +  resultant_text[j])
+            results.append(images_filepaths[batchnum][j][3:] + " : " +  resultant_text[j])
+    
+    return results
 
 
 if __name__ == "__main__":
