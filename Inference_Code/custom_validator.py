@@ -37,7 +37,7 @@ def make_batches(folder_name, images_list):
     # images_list.sort()
     # print(images_list)
     # print(images_list)
-    max_images_per_batch = 60
+    max_images_per_batch = len(images_list)
     quo = len(images_list)//max_images_per_batch
     rem = len(images_list)%max_images_per_batch
     batch_range = range(0, max_images_per_batch)

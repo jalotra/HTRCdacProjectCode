@@ -20,6 +20,7 @@ def list_images():
 
 def  parallel_segment():
     images_list = list_images()
+    print(images_list)
     # Create parallelly "PARALLEL" Number of Nodes
     # PARALLEL_SEGMENT_NODES = os.environ.get("PARALLEL_SEGMENT_NODES") 
     # PARALLEL_SEGMENT_NODES = 
