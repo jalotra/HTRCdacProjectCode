@@ -31,8 +31,9 @@ def parallel_recognise():
     # Lets write the results to appropriate folders --> Output_Text/folder_name
     results = list(results)
     for i in range(len(results)):
-        with open(f"Output_Text/{results[0]}", "a") as f:
-            f.write(results[1] + "\n")
+        f = open(f"Output_Text/{results[0]}", "a")
+        f.write(results[1] + "\n")
+        f.close()
 
 
 # Loads the model from the folder "./model"
