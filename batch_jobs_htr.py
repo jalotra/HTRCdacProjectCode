@@ -22,6 +22,11 @@ def list_folders(image_folder = "Word_Segmented_Images"):
 def run_custom_validator(image_folder):
     validate.main(image_folder)
 
+def parallel_recognise():
+    folders = list_folders()
+    folders = [f"Word_Segmented_Images/{x}" for x in folders]
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        results = executor.map(validate.main, folders)
 
 
 # Loads the model from the folder "./model"
@@ -36,4 +41,5 @@ if __name__ == "__main__":
     for folder in fldrs:
         print(folder)
     
-    run_custom_validator(f"Word_Segmented_Images/{fldrs[0]}")
+    # run_custom_validator(f"Word_Segmented_Images/{fldrs[0]}")
+    parallel_recognise()
