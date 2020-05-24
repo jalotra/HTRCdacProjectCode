@@ -45,6 +45,7 @@ I have used tranfer-learning because training a model from scratch will not be f
 So the goes like this. Took word-images from  :
 1. 1,15,319 IAM DATABASE 
 2. 1,20,166 CVL_DATABASE
+
 Divided the data into train 90% and test 10% and used `levenshtein distance` as the metric to judge results on the testing dataset. Also I applied Data-Augmentation with probability 0.5 among `rotate, shear, distort, dilate, do_nothing`. That increased the data-size further.  
 
 ## Results 
