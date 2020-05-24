@@ -41,11 +41,8 @@ def parallel_recognise():
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for i in range(len(results)):
             for j in range(len(results[i])):
-                print(results[0])
-                # f = open(f"Output_Text/{results[i][j][0]}.txt", "a")
-                # f.write(results[i][j][1] + "\n")
-                # f.close()
-                executor.submit(write_to_file(f"Output_Text/{results[i][j][0]}.txt", results[i][j][1]))
+                executor.submit(write_to_file,\
+                     f"Output_Text/{results[i][j][0]}.txt", results[i][j][1])
 
 
 # Loads the model from the folder "./model"
