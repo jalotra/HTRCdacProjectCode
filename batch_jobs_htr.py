@@ -29,7 +29,7 @@ def parallel_recognise():
         results = executor.map(validate.main, folders)
     print(*results)
     # Lets write the results to appropriate folders --> Output_Text/folder_name
-    for i in range(results):
+    for i in range(*results):
         with open(f"Output_Text/{results[0]}", "a") as f:
             f.write(results[1] + "\n")
 
