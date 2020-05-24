@@ -91,8 +91,8 @@ def main(folder_name):
         print("VALIDATIING BATCH {}".format(batchnum))
         resultant_text = infer(model, batch)
         for  j in range(len(images_filepaths[batchnum])):
-            results.append(tuple(folder_name[-1],  \
-            str(images_filepaths[batchnum][j]+ " : " +  resultant_text[j])))
+            results.append(tuple((folder_name[-1],  \
+            str(images_filepaths[batchnum][j]+ " : " +  resultant_text[j]))))
     
     return results
 
