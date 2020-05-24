@@ -22,6 +22,11 @@ def list_folders(image_folder = "Word_Segmented_Images"):
 def run_custom_validator(image_folder):
     validate.main(image_folder)
 
+def write_to_file(filename, what_to_write):
+    f = open(filename, "a")
+    f.write(what_to_write + "\n")
+    f.close()
+
 def parallel_recognise():
     folders = list_folders()
     folders = [f"Word_Segmented_Images/{x}" for x in folders]
@@ -33,12 +38,14 @@ def parallel_recognise():
     print(results)
     if not os.path.exists("Output_Text/"):
         os.mkdir("Output_Text")
-    for i in range(len(results)):
-        for j in range(len(results[i])):
-            print(results[0])
-            f = open(f"Output_Text/{results[i][j][0]}.txt", "a")
-            f.write(results[i][j][1] + "\n")
-            f.close()
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        for i in range(len(results)):
+            for j in range(len(results[i])):
+                print(results[0])
+                # f = open(f"Output_Text/{results[i][j][0]}.txt", "a")
+                # f.write(results[i][j][1] + "\n")
+                # f.close()
+                executor.submit(write_to_file(f"Output_Text/{results[i][j][0]}.txt", results[i][j][1]))
 
 
 # Loads the model from the folder "./model"
