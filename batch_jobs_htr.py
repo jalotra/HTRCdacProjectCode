@@ -29,9 +29,9 @@ def write_to_file(filename, what_to_write):
 
 def parallel_recognise():
     folders = list_folders()
-    folders = [f"Word_Segmented_Images/{x}" for x in folders]
+    added_folders = [f"Word_Segmented_Images/{x}" for x in folders]
     with concurrent.futures.ProcessPoolExecutor() as executor:
-        results = executor.map(validate.main, folders)
+        results = executor.map(validate.main, added_folders, folders)
     # print(*results)   
     # Lets write the results to appropriate folders --> Output_Text/folder_name
     results = list(results)
