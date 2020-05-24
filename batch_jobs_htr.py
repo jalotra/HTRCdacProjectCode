@@ -31,6 +31,7 @@ def parallel_recognise():
     # Lets write the results to appropriate folders --> Output_Text/folder_name
     results = list(results)
     for i in range(len(results)):
+        print(results[0])
         f = open(f"Output_Text/{results[0]}", "a")
         f.write(results[1] + "\n")
         f.close()
