@@ -38,13 +38,17 @@ def parallel_recognise():
     # print(results)
     if not os.path.exists("Output_Text/"):
         os.mkdir("Output_Text")
+
+    s = set()
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for i in range(len(results)):
+            # print(results[i][j][0])
             for j in range(len(results[i])):
-                print(results[i][j][0])
+                s.add(results[i][j][0])
                 executor.submit(write_to_file,\
                      f"Output_Text/{results[i][j][0]}.txt", results[i][j][1])
 
+    print(s)
 
 # Loads the model from the folder "./model"
 # Creates a batch of images for some folder in Word_Segmented_Images example ABCD folder
