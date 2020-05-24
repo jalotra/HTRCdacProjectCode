@@ -49,6 +49,7 @@ def parallel_recognise():
                      f"Output_Text/{results[i][j][0]}.txt", results[i][j][1])
 
     print(s)
+    print(results)
 
 # Loads the model from the folder "./model"
 # Creates a batch of images for some folder in Word_Segmented_Images example ABCD folder
