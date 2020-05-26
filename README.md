@@ -60,3 +60,9 @@ The task remains to fine-tune on the cropped images of the doctor-prescriptions.
 3. Next you must have the model in `./model` folder. For that see `./model/README.md`.
 4. Finally run `batch_jobs_htr.py`. This will take all images present in `./Word_Segmented_Images` and forward-prop the bix-iamges through the model and keep the result in `./Output_Text/{foldername}`.
  
+## Reference-Links 
+1. [Alex-Graves-Thesis](https://www.cs.toronto.edu/~graves/phd.pdf)
+2. [Paper-Architecture-That-I-Implemented](https://arxiv.org/pdf/1507.05717.pdf)
+3. [SimpleHTR](https://github.com/githubharald)
+4. [Future-Work](https://ieeexplore.ieee.org/abstract/document/8270041/)
+5. [Another-Great-Paper](https://arxiv.org/pdf/1804.01527.pdf)
