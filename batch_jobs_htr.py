@@ -36,9 +36,6 @@ def parallel_recognise():
     # Lets write the results to appropriate folders --> Output_Text/folder_name
     results = list(results)
     # print(results)
-    if not os.path.exists("Output_Text/"):
-        os.mkdir("Output_Text")
-
     s = set()
     with concurrent.futures.ThreadPoolExecutor() as executor:
         for i in range(len(results)):
@@ -51,6 +48,12 @@ def parallel_recognise():
     print(s)
     print(results)
 
+def create_useful_directories():
+    if not os.path.exists("Output_Text/"):
+        os.mkdir("Output_Text")
+    if not os.path.exits("Word_Segmented_Images/"):
+        os.mkdir("Word_Segmented_Images")
+
 # Loads the model from the folder "./model"
 # Creates a batch of images for some folder in Word_Segmented_Images example ABCD folder
 # And forwards propogates it through the model and saves the ouput in the 
@@ -59,9 +62,13 @@ def validate_on_folders():
     pass
 
 if __name__ == "__main__":
+    create_useful_directories()
     fldrs = list_folders()
     for folder in fldrs:
-        print(folder)
+        if folder is None:
+            assert("Word_Segmented_Images directory not Found !")
+        else:
+            print(folder)
     
     # run_custom_validator(f"Word_Segmented_Images/{fldrs[0]}")
     parallel_recognise()
