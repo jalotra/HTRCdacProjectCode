@@ -51,7 +51,7 @@ def parallel_recognise():
 def create_useful_directories():
     if not os.path.exists("Output_Text/"):
         os.mkdir("Output_Text")
-    if not os.path.exisets("Word_Segmented_Images/"):
+    if not os.path.exists("Word_Segmented_Images/"):
         os.mkdir("Word_Segmented_Images")
 
 # Loads the model from the folder "./model"
