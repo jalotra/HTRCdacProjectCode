@@ -8,7 +8,23 @@ The problem includes handwriting-recognition and that too of doctors. As you mig
 I knew that deep-learning would help here. So that's what I did. This repo is an example of supervised-sequence labelling algorithm. <br />
 If you don't know what is a supervised-sequence labelling algorithm, let me restate that for you. <br />
 <b> Explanation </b> <br />
-Given a sequence x from a input space X and a target z from a target space Z a supervised-sequnce labelling is to map this x from the input space to z to the output z. Lets say we have D(XxZ) as the total space of elements. In a supervised-learning task we have some elements from D that we call the training set and some disjoint set S' from D that we say is the test-set. Now the task is to generalise on the training-set and apply that knowledge to the test-set.
+Given a sequence x from a input space X and a target z from a target space Z a supervised-sequnce labelling is to map this x to the output z. Lets say we have D(XxZ) as the total space of elements. In a supervised-learning task we take some elements from D that we call the training set and we have a whole new set S' that is disjoint from D that we say is the test-set. Now the task is to generalise on the training-set and apply that knowledge to the test-set.
+
+## Intuition 
+A lot of deep-learning is build upon intuition. So let me prove my intuition to you. Lets start simple. If you have ever trained deep-nn on a toy dataset like MNIST what we do is we put a lot of CNNs to the images and then after some CNN Layes let's say 5 layers we get a flattened output that we calculate the loss upon using the cross-entropy loss and then backprop the loss. <br />
+In short what you have is a tensor of shape batch_size x 1 x 32 x 32 and at the output tensor is of size batch_size x num_classes. You calculate loss do backprop and gradient descent.
+
+The intuition for this problem is somewhat related to this: <br />
+Lets say you have an image of the word of some (height x width) what you want to know is for every column in the image an character representation of the character that is written there. Lets say that the character is like ...abaac... and each character takes like 10 columns to fit in the image. What you want the model to return is somewhat like ...aaaaaaaaaabbbbbbbbbbaaaaaaaaaaaaaaaaaacccccccccc... and then you can easily decode this to ...abcd.... .  <br />
+#### HERE COMES CNN
+So what I do is say you resize the image to be of the size (128x32) you first use a cnn to get some higher level representations of the image itself. In my case from the cnn you get a tensor of size batch_size x 32 x 1 x 512, this means that each tensor[i] has 32 layers of the size (1 x 512) or inshort every column in the original image has become to be of size (1 x 512) or in-scalar terms each column has become a vector of 512 elements.  <br />
+#### HERE COMES RNN
+We know obviously that in a language model we have occurence of some next-character based on the previous values.  <br />Example : 
+let's say that I model my name "Shivam Jalotra" as a explicit function. P(next_charcter == "o"| previous_character == "l") > P(next_character == "o" | previous_character can belong to {"S", "h", "i", "v" ...}), you get the idea right ? <br />
+So there should be some-intermediate connections between the output {i} x 1 x 512 and {i + 1} x 1 x 512 tensors. So I use a BIDLSTM that has its own literature and which finally gives me a matrix batch_size x 32 x len(chars) + 1.  <br />
+Where each value in this rnn_out tensor is a probability P(character == char[i] | timestamp = timestamp[i]). 
+
+IF YOU GET THE INTUITION THEN YOU ARE GOOD TO GO. <br />
 
 ## What's Next 
 So far you get that I have used a supervised-learning algorithm, but what exactly is still unknown.
