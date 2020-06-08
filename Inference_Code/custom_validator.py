@@ -48,7 +48,7 @@ def make_batches(folder_name, images_list):
     while(quo > 0):
         new_images = []
         gtTexts = [None for i in range(max_images_per_batch)]
-        imgs = [preprocess(cv2.imread(folder_name + "/" + images_list[i], cv2.IMREAD_GRAYSCALE), img_size, dataAugmentation=True) for i in range(cnt*max_images_per_batch,  (cnt+1)*max_images_per_batch)]
+        imgs = [preprocess(cv2.imread(folder_name + "/" + images_list[i], cv2.IMREAD_GRAYSCALE), img_size, dataAugmentation=False) for i in range(cnt*max_images_per_batch,  (cnt+1)*max_images_per_batch)]
         batches_list.append(Batch(gtTexts, imgs))
         for i in range(cnt*max_images_per_batch,  (cnt+1)*max_images_per_batch):
             new_images.append(folder_name + "/" + images_list[i])
