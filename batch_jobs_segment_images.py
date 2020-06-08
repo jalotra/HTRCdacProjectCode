@@ -32,8 +32,14 @@ def  parallel_segment():
     with concurrent.futures.ProcessPoolExecutor() as executor:
         results = executor.map(run.run, images_list)
 
+def create_useful_directories():
+    if not os.path.exists("Output_Text/"):
+        os.mkdir("Output_Text")
+    if not os.path.exists("Word_Segmented_Images/"):
+        os.mkdir("Word_Segmented_Images")
 
 if __name__ == "__main__":
+    create_useful_directories()
     # input_images_folder = "Input_Images"
     # input_images = []
     # for files in os.listdir(input_images_folder):
