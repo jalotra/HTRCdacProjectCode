@@ -277,7 +277,11 @@ class Model:
         """ Initialize TensorFlow """
         print('Python: ' + sys.version)
         print('Tensorflow: ' + tf.__version__)
-        sess = tf.Session()  # Tensorflow session
+        config = tf.ConfigProto(
+        device_count = {'GPU': 0}
+        )
+        sess = tf.Session(config=config)
+#         sess = tf.Session()  # Tensorflow session
         saver = tf.train.Saver(max_to_keep=3)  # Saver saves model to file
         modelDir = 'model/'
         latestSnapshot = tf.train.latest_checkpoint(modelDir)  # Is there a saved model?
