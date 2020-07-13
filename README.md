@@ -1,4 +1,4 @@
-# HTRCdacProjectCode
+# Handwriting Recognition (Doctor Maybe ?)
 Hello Anybody seeing this repository from the future. This repo contains the code that can judge the handwriting of doctor specifially. How does it work ? Lets start simple. 
 
 ## Problem Statement 
